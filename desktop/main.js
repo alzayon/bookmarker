@@ -22,11 +22,14 @@ function createWindow() {
         win = null
     })
 
-    win.loadURL(url.format({
-        pathname: path.join(__dirname, '../www/index.html'),
-        protocol: 'file:',
-        slashes: true
-    }))
+    //TODO
+    //Change the path when packaging the final app
+    win.loadURL('http://localhost:8100')
+    // win.loadURL(url.format({       
+    //     pathname: path.join(__dirname, './www/index.html'), 
+    //     protocol: 'file:',
+    //     slashes: true
+    // }))
 
 }
 
