@@ -3,24 +3,25 @@
   "version": "0.0.1",
   "author": "Alexis Azanza",
   "homepage": "http://bookmarker.com/",
-  "main": "./desktop/main.js",
+  "main": "./buildrelease/desktop/main.js",
   "private": true,
   "scripts": {
     "start": "electron .",
     "mon": "nodemon --exec \"npm start\"",
     "build": "cd ionic && yarn install && yarn run ionic:build && yarn run deploy",
     "build:prod": "cd ionicapp && yarn install && yarn run ionic:build && yarn run deploy",
-    "icons": "nicns --in desktop/images/icon.png --out build/icons.icns",
+    "icons": "nicns --in electronapp/images/icon.png --out build/icons.icns",
     "package:macos": "electron-packager . --icon=build/icons.icns --overwrite --ignore=\"(\\.(icns|md))|(.+\\.lock$)|(\\/ionic\\/)|(^\\..+$)|(typings)|((nodemon|tslint)\\.json)\"",
-    "package:win": "electron-packager . --icon=server/images/icon.ico --overwrite --ignore=\"(\\.(icns|md))|(.+\\.lock$)|(\\/ionic\\/)|(^\\..+$)|(typings)|((nodemon|tslint)\\.json)\"",
+    "package:win": "electron-packager . --icon=electronapp/images/icon.ico --overwrite --ignore=\"(\\.(icns|md))|(.+\\.lock$)|(\\/ionic\\/)|(^\\..+$)|(typings)|((nodemon|tslint)\\.json)\"",
     "pack": "build --dir",
     "publish": "run-s build:prod icons release",
-    "release": "build -p always"
+    "release": "build -p always",
+    "tsc:electron": "tsc"
   },
   "build": {
     "appId": "com.alexisazanza.bookmarker",
     "files": [
-      "desktop/**",
+      "publishready/**",
       "!ionicapp/**${/*}",
       "!**/node_modules/*/build${/*}",
       "**/node_modules/*/build/**/*.node",
@@ -68,6 +69,7 @@
     ]
   },
   "dependencies": {
+    "@types/electron": "^1.6.10",
     "electron-log": "^2.2.17",
     "electron-updater": "^3.1.2",
     "lodash": "^4.17.11"
@@ -76,7 +78,8 @@
     "@ionic/app-scripts": "3.2.0",
     "electron": "^2.0.8",
     "electron-builder": "^20.28.4",
-    "typescript": "~2.6.2"
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2"
   },
   "description": "A bookmarker application"
 }
