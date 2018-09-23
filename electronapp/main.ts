@@ -1,8 +1,5 @@
-import { BrowserWindow, app } from "electron"
-import { WindowCreator } from './window_creator'
+import { app, BrowserWindow } from "electron";
+import { WindowCreator } from "./window_creator";
 
-let windowCreator = new WindowCreator(app)
-windowCreator.setup()
-
-
-
+const windowCreator = new WindowCreator(app);
+windowCreator.setup();
